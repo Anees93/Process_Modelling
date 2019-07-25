@@ -4,7 +4,6 @@ from openpyxl import load_workbook
 from random import random
 import numpy as np
 from scipy.stats import norm
-import time
 
 
 def print_results(Customers, lTotalTicks):
@@ -33,7 +32,6 @@ def main():
 
     for i in range(0, lNmbrStas):
         Stations.append(Station(i+1))
-
         Stations[i].set_StaMean(ws.cell(row=i + 5, column=3).value)
         Stations[i].set_StaSD(ws.cell(row=i + 5, column=4).value)
         Stations[i].set_NextSta(ws.cell(row=i + 5, column=5).value)
@@ -44,11 +42,9 @@ def main():
     lCreateNextAt = 1
     # Set CustID counter to 1
     lCustIDCntr = 1
-
     # Prepare customer arrival data
     N = 54
     mean = 20
-
 
     print("Simulation Started")
     # Outer For Next loop runs for the total ticks set above
@@ -112,7 +108,7 @@ def main():
                 # Sets last station to idle when a customer leaves it
                 Stations[lNmbrStas-1].set_StaIsIdle(1)
 
-    # print_results(Customers, lTotalTicks)
+    print_results(Customers, lTotalTicks)
 
 
 if __name__ == "__main__":
