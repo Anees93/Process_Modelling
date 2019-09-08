@@ -49,10 +49,10 @@ def main():
     print("Simulation Started")
     # Outer For Next loop runs for the total ticks set above
     for i in range(1, lTotalTicks+1):
-        print("START OF TICKER", i)
+        # print("START OF TICKER", i)
         # Check if a customer is due to be created on this tick, if not, do nothing.
         if i == lCreateNextAt:
-            print("Customer#", lCustIDCntr, " Arrival in Ticker", i)
+            # print("Customer#", lCustIDCntr, " Arrival in Ticker", i)
             Customers.append(Customer(lCustIDCntr))
             Customers[lCustIDCntr - 1].set_StartTime(1)
             Customers[lCustIDCntr - 1].set_NextSta(1)
@@ -73,7 +73,7 @@ def main():
                     # If the customer remains idle for this tick, add 1 to idle time.
                     if Stations[customer.get_NextSta() - 1].get_StaIsIdle() is 0:
                         customer.set_IdleTime(1 + customer.get_IdleTime())
-                        print("Customer#", customer.get_CustID(), " Waited another ticker")
+                        # print("Customer#", customer.get_CustID(), " Waited another ticker")
                     # If not, set as not idle and generate processing time.
                     else:
                         customer.set_Station(customer.get_NextSta())
@@ -82,8 +82,8 @@ def main():
                         endTime = i + norm.ppf(random(), Stations[customer.get_Station()-1].get_StaMean(),
                                                Stations[customer.get_Station()-1].get_StaSD())
                         customer.set_EndTime(int(endTime))
-                        print("Customer#", customer.get_CustID(),"Seized Station#", customer.get_Station(),
-                              "until ", int(endTime), "Ticker")
+                        # print("Customer#", customer.get_CustID(),"Seized Station#", customer.get_Station(),
+                        #       "until ", int(endTime), "Ticker")
                         # Make sure the customer spends at least one tick in a station
                         if customer.get_EndTime() <= i:
                             customer.set_EndTime(i+1)
@@ -95,14 +95,14 @@ def main():
                 elif customer.get_EndTime() == i:
                     Stations[customer.get_Station()-1].set_StaIsIdle(1)
                     customer.set_IsIdle(1)
-                    print("Customer#", customer.get_CustID(), "Released Station#", customer.get_Station())
+                    # print("Customer#", customer.get_CustID(), "Released Station#", customer.get_Station())
                     customer.set_Station(customer.get_NextSta())
 
                     # If the customer's station is -1, it is done.
                     # Set station to -1 and record the time it left the system.
                     if customer.get_Station() == -1:
                         customer.set_Left(i)
-                        print("Customer#", customer.get_CustID(), "has left the system")
+                        # print("Customer#", customer.get_CustID(), "has left the system")
 
             else:
                 # Sets last station to idle when a customer leaves it
