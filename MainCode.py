@@ -38,7 +38,7 @@ def main():
         Stations[i].set_StaIsIdle(1)
 
     # Total ticks for each run
-    lTotalTicks = 2880  # each tick represents 10 seconds in an eight-hout day
+    lTotalTicks = 2880  # each tick represents 10 seconds in an eight-hour day
     lCreateNextAt = 1
     # Set CustID counter to 1
     lCustIDCntr = 1
